@@ -1,0 +1,928 @@
+@charset "utf-8";
+@import "http://weloveiconfonts.com/api/?family=zocial";
+@import url('https://fonts.googleapis.com/css?family=Raleway:100,200,400,500,700,800,900');
+@import "css/bootstrap.min.css";
+@import "css/reset.min.css";
+
+/*
+Theme Name: Meu Match
+Description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum provident dicta minima ducimus neque, impedit aperiam consequatur, ad deserunt quos accusantium illum eius ipsa similique optio commodi, officiis amet quibusdam! Aspernatur necessitatibus debitis beatae error, rem asperiores laborum dicta? Iusto distinctio sunt unde possimus expedita repellat iste autem natus excepturi.
+Version: 1.0
+Author: WpMasterLab
+Author URI: https://www.facebook.com/wpmasterlab.br/?ref=br_rs
+License: WpMasterLab
+*/
+
+
+@font-face {
+  font-family:'PaymentFont';
+  src:url('fonts/paymentfont-webfont.eot');
+  src:url('fonts/paymentfont-webfont.eot?#iefix') format('embedded-opentype'),
+      url('fonts/paymentfont-webfont.woff') format('woff2'),
+      url('fonts/paymentfont-webfont.woff') format('woff'),
+      url('fonts/paymentfont-webfont.ttf') format('truetype'),
+      url('fonts/paymentfont-webfont.svg#paymentfont-webfont') format('svg');
+  font-weight:normal;
+  font-style:normal;}
+
+@mixin transition($tempo){
+  -webkit-transition:all linear $tempo;
+  -moz-transition:all linear $tempo;
+  -o-transition:all linear $tempo;
+  transition:all linear $tempo;
+}
+
+@mixin height($tempo){
+  -webkit-transition:max-height $tempo;
+  -moz-transition:max-height $tempo;
+  -o-transition:max-height $tempo;
+  transition:max-height $tempo;
+}
+
+@mixin width($tempo){
+  -webkit-transition:max-width $tempo;
+  -moz-transition:max-width $tempo;
+  -o-transition:max-width $tempo;
+  transition:max-width $tempo;
+}
+
+@mixin border($radius){
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -ms-border-radius: $radius;
+}
+
+@mixin shadow($val1, $val2, $val3, $val4, $cor){
+  -webkit-box-shadow: $val1 $val2 $val3 $val4 $cor;
+  -moz-box-shadow: $val1 $val2 $val3 $val4 $cor;
+  box-shadow: $val1 $val2 $val3 $val4 $cor;
+}
+
+@mixin background($size){
+    -webkit-background-size: $size;
+    -moz-background-size: $size;
+    -o-background-size: $size;
+    background-size: $size;
+}
+
+$browser-context: 16; // Default
+
+@function em($pixels, $context: $browser-context) {
+  @return #{$pixels/$context}em;
+}
+
+// 0. COLORS VARS
+
+$gold:#c2b389;
+$lightgold:#e9e6dc;
+$gray:#414040;
+$lightgray:#a4a3a1;
+
+// 0.1 DEFAULTS
+
+[style*="color: #999999"]{
+  color:$gray !important;
+}
+
+html,body,#wrap{
+  font-family: 'Raleway', sans-serif;
+  min-height: 480px;
+  min-width: 280px;
+  background-color:$lightgold;
+}
+
+main{background-color:#fff;}
+
+#wrap{
+  position:relative;
+  overflow: hidden;
+  width:100%;
+}
+
+body *{@include transition(300ms);}
+
+.logo{
+  position: relative;
+  display: block;
+}
+
+.v-center {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+    margin-right: -9px !important;
+}
+
+.v-bottom {
+    display: inline-block;
+    vertical-align: bottom;
+    float: none;
+    margin-right: -9px !important;
+}
+
+button[class*="vc_btn"]{
+  position:relative;
+  overflow: hidden;
+  &::after{
+    content: "";
+    height: 50%;
+    width: 100%;
+    position:absolute;
+    bottom:0;
+    left:0;
+    background-color:rgba(255,255,255, .1);
+    display: block;
+  }
+}
+
+.separator{
+  position:relative;
+  text-transform: uppercase;
+  line-height: 1.6em;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 300;
+  .wpb_wrapper{display:block;}
+  &:not([class*="style"]){
+    &::after,&::before{
+      position:relative;
+      display: inline-block;
+      content:url(./assets/ribbon.png);
+      margin-top:10px;
+      margin-bottom: 10px;
+    }
+    &::after{
+      margin-bottom:0;
+      -webkit-transform: rotate(180deg);  
+          -ms-transform: rotate(180deg);  
+              transform: rotate(180deg); 
+    }       
+  }   
+  &[class*="style"]{
+    .wpb_wrapper{
+      display:inline-block;
+      vertical-align: middle;
+      width:50%;
+      margin-right: -4px;
+    }
+     &::after,&::before{
+      position:relative;
+      display: inline-block;
+      vertical-align: middle;
+      content:'';
+      background: $gold;
+      padding:1px 0;
+      width:25%;
+      margin-right: -4px;
+    }
+    p{display:none;}
+  }
+}
+
+table{
+  width: 100%;
+  tr{
+    td{
+      padding:6px;
+      color:$gray;
+    }
+    &:nth-child(odd){background-color:$lightgold;}
+  }
+}
+
+[placeholder]{color:$gray;}
+input[placeholder]{color:$gray;}
+::-moz-placeholder{color:$gray;}
+input::-webkit-input-placeholder{color:$gray;}
+textarea::-webkit-input-placeholder{color:$gray;}
+input:-ms-input-placeholder{color:$gray;}
+textarea:-ms-input-placeholder{color:$gray;}
+
+// 0.2 Assets
+
+.pf {
+  display:inline-block;
+  font:normal normal normal 22px/1 PaymentFont;
+  font-size:20px;
+  text-rendering:auto;
+  -webkit-font-smoothing:antialiased;
+  &:not(:last-of-type){margin-right:12px;}
+  -moz-osx-font-smoothing:grayscale;}
+
+.pf-amazon:before {
+  content: "\f000";
+}
+.pf-american-express:before {
+  content: "\f001";
+}
+.pf-american-express-alt:before {
+  content: "\f002";
+}
+.pf-atm:before {
+  content: "\f003";
+}
+.pf-bankomat:before {
+  content: "\f004";
+}
+.pf-bank-transfer:before {
+  content: "\f005";
+}
+.pf-bitcoin:before {
+  content: "\f006";
+}
+.pf-bitcoin-sign:before {
+  content: "\f007";
+}
+.pf-braintree:before {
+  content: "\f008";
+}
+.pf-btc:before {
+  content: "\f009";
+}
+.pf-card:before {
+  content: "\f00a";
+}
+.pf-carta-si:before {
+  content: "\f00b";
+}
+.pf-cash:before {
+  content: "\f00c";
+}
+.pf-cash-on-delivery:before {
+  content: "\f00d";
+}
+.pf-cb:before {
+  content: "\f00e";
+}
+.pf-cirrus:before {
+  content: "\f00f";
+}
+.pf-cirrus-alt:before {
+  content: "\f010";
+}
+.pf-clickandbuy:before {
+  content: "\f011";
+}
+.pf-credit-card:before {
+  content: "\f012";
+}
+.pf-diners:before {
+  content: "\f013";
+}
+.pf-discover:before {
+  content: "\f014";
+}
+.pf-ec:before {
+  content: "\f015";
+}
+.pf-eps:before {
+  content: "\f016";
+}
+.pf-eur:before {
+  content: "\f017";
+}
+.pf-facture:before {
+  content: "\f018";
+}
+.pf-fattura:before {
+  content: "\f019";
+}
+.pf-flattr:before {
+  content: "\f01a";
+}
+.pf-giropay:before {
+  content: "\f01b";
+}
+.pf-gittip:before,
+.pf-gratipay:before {
+  content: "\f01c";
+}
+.pf-google-wallet:before {
+  content: "\f01d";
+}
+.pf-google-wallet-alt:before {
+  content: "\f01e";
+}
+.pf-gbp:before {
+  content: "\f01f";
+}
+.pf-ideal:before {
+  content: "\f020";
+}
+.pf-ils:before {
+  content: "\f021";
+}
+.pf-inr:before {
+  content: "\f022";
+}
+.pf-invoice:before {
+  content: "\f023";
+}
+.pf-invoice-sign:before {
+  content: "\f024";
+}
+.pf-invoice-sign-alt:before {
+  content: "\f025";
+}
+.pf-invoice-sign-alt-o:before {
+  content: "\f026";
+}
+.pf-invoice-sign-o:before {
+  content: "\f027";
+}
+.pf-jcb:before {
+  content: "\f028";
+}
+.pf-jpy:before {
+  content: "\f029";
+}
+.pf-krw:before {
+  content: "\f02a";
+}
+.pf-maestro:before {
+  content: "\f02b";
+}
+.pf-maestro-alt:before {
+  content: "\f02c";
+}
+.pf-mastercard:before {
+  content: "\f02d";
+}
+.pf-mastercard-alt:before {
+  content: "\f02e";
+}
+.pf-mastercard-securecode:before {
+  content: "\f02f";
+}
+.pf-ogone:before {
+  content: "\f030";
+}
+.pf-paybox:before {
+  content: "\f031";
+}
+.pf-paylife:before {
+  content: "\f032";
+}
+.pf-paypal:before {
+  content: "\f033";
+}
+.pf-paypal-alt:before {
+  content: "\f034";
+}
+.pf-paysafecard:before {
+  content: "\f035";
+}
+.pf-postepay:before {
+  content: "\f036";
+}
+.pf-quick:before {
+  content: "\f037";
+}
+.pf-rechnung:before {
+  content: "\f038";
+}
+.pf-ripple:before {
+  content: "\f039";
+}
+.pf-rub:before {
+  content: "\f03a";
+}
+.pf-skrill:before {
+  content: "\f03b";
+}
+.pf-sofort:before {
+  content: "\f03c";
+}
+.pf-square:before {
+  content: "\f03d";
+}
+.pf-stripe:before {
+  content: "\f03e";
+}
+.pf-truste:before {
+  content: "\f03f";
+}
+.pf-try:before {
+  content: "\f040";
+}
+.pf-unionpay:before {
+  content: "\f041";
+}
+.pf-usd:before {
+  content: "\f042";
+}
+.pf-verified-by-visa:before {
+  content: "\f043";
+}
+.pf-verisign:before {
+  content: "\f044";
+}
+.pf-visa:before {
+  content: "\f045";
+}
+.pf-visa-electron:before {
+  content: "\f046";
+}
+.pf-western-union:before {
+  content: "\f047";
+}
+.pf-western-union-alt:before {
+  content: "\f048";
+}
+.pf-wirecard:before {
+  content: "\f049";
+}
+.pf-sepa:before {
+  content: "\f04a";
+}
+.pf-sepa-alt:before {
+  content: "\f04b";
+}
+.pf-apple-pay:before {
+  content: "\f04c";
+}
+.pf-interac:before {
+  content: "\f04d";
+}
+.pf-paymill:before {
+  content: "\f04e";
+}
+.pf-dankort:before {
+  content: "\f04f";
+}
+.pf-bancontact-mister-cash:before {
+  content: "\f050";
+}
+.pf-moip:before {
+  content: "\f051";
+}
+.pf-pagseguro:before {
+  content: "\f052";
+}
+.pf-cash-on-pickup:before {
+  content: "\f053";
+}
+.pf-sage:before {
+  content: "\f054";
+}
+.pf-elo:before {
+  content: "\f055";
+}
+.pf-elo-alt:before {
+  content: "\f056";
+}
+.pf-payu:before {
+  content: "\f057";
+}
+.pf-mercado-pago:before {
+  content: "\f058";
+}
+.pf-mercado-pago-sign:before {
+  content: "\f059";
+}
+.pf-payshop:before {
+  content: "\f05a";
+}
+.pf-multibanco:before {
+  content: "\f05b";
+}
+.pf-gratipay-sign:before {
+  content: "\f05c";
+}
+.pf-six:before {
+  content: "\f05d";
+}
+.pf-cashcloud:before {
+  content: "\f05e";
+}
+
+[class*="zocial-"]:before {
+  font-family: 'zocial', sans-serif;
+  font-size: 28px;
+}
+
+.zocial-amazon:before{content:"a"}
+.zocial-android:before{content:"&"}
+.zocial-angellist:before{content:"\00D6"}
+.zocial-aol:before{content:"\""}
+.zocial-appnet:before{content:"\00E1"}
+.zocial-appstore:before{content:"A"}
+.zocial-bitbucket:before{content:"\00E9"}
+.zocial-bitcoin:before{content:"2"}
+.zocial-blogger:before{content:"B"}
+.zocial-buffer:before{content:"\00E5"}
+.zocial-call:before{content:"7"}
+.zocial-cal:before{content:"."}
+.zocial-cart:before{content:"\00C9"}
+.zocial-chrome:before{content:"["}
+.zocial-cloudapp:before{content:"c"}
+.zocial-creativecommons:before{content:"C"}
+.zocial-delicious:before{content:"#"}
+.zocial-digg:before{content:";"}
+.zocial-disqus:before{content:"Q"}
+.zocial-dribbble:before{content:"D"}
+.zocial-dropbox:before{content:"d"}
+.zocial-drupal:before{content:"\00E4"}
+.zocial-dwolla:before{content:"\00E0"}
+.zocial-email:before{content:"]"}
+.zocial-eventasaurus:before{content:"v"}
+.zocial-eventbrite:before{content:"|"}
+.zocial-eventful:before{content:"'"}
+.zocial-evernote:before{content:"E"}
+.zocial-facebook:before{content:"f"}
+.zocial-fivehundredpx:before{content:"0"}
+.zocial-flattr:before{content:"%"}
+.zocial-flickr:before{content:"F"}
+.zocial-forrst:before{content:":"}
+.zocial-foursquare:before{content:"4"}
+.zocial-github:before{content:"g"}
+.zocial-gmail:before{content:"m"}
+.zocial-google:before{content:"G"}
+.zocial-googleplay:before{content:"h"}
+.zocial-googleplus:before{content:"+"}
+.zocial-gowalla:before{content:"@"}
+.zocial-grooveshark:before{content:"8"}
+.zocial-guest:before{content:"?"}
+.zocial-html5:before{content:"5"}
+.zocial-ie:before{content:"6"}
+.zocial-instagram:before{content:"\00DC"}
+.zocial-instapaper:before{content:"I"}
+.zocial-intensedebate:before{content:"{"}
+.zocial-itunes:before{content:"i"}
+.zocial-klout:before{content:"K"}
+.zocial-lanyrd:before{content:"-"}
+.zocial-lastfm:before{content:"l"}
+.zocial-linkedin:before{content:"L"}
+.zocial-macstore:before{content:"^"}
+.zocial-meetup:before{content:"M"}
+.zocial-myspace:before{content:"_"}
+.zocial-ninetyninedesigns:before{content:"9"}
+.zocial-openid:before{content:"o"}
+.zocial-opentable:before{content:"\00C7"}
+.zocial-paypal:before{content:"$"}
+.zocial-pinboard:before{content:"n"}
+.zocial-pinterest:before{content:"1"}
+.zocial-plancast:before{content:"P"}
+.zocial-plurk:before{content:"j"}
+.zocial-pocket:before{content:"\00E7"}
+.zocial-podcast:before{content:"`"}
+.zocial-posterous:before{content:"~"}
+.zocial-print:before{content:"\00D1"}
+.zocial-quora:before{content:"q"}
+.zocial-reddit:before{content:">"}
+.zocial-rss:before{content:"R"}
+.zocial-skype:before{content:"S"}
+.zocial-smashing:before{content:"*"}
+.zocial-songkick:before{content:"k"}
+.zocial-soundcloud:before{content:"s"}
+.zocial-spotify:before{content:"="}
+.zocial-statusnet:before{content:"\00E2"}
+.zocial-steam:before{content:"b"}
+.zocial-stripe:before{content:"\00A3"}
+.zocial-stumbleupon:before{content:"/"}
+.zocial-tumblr:before{content:"t"}
+.zocial-twitter:before{content:"T"}
+.zocial-viadeo:before{content:"H"}
+.zocial-vimeo:before{content:"V"}
+.zocial-vk:before{content:"N"}
+.zocial-weibo:before{content:"J"}
+.zocial-wikipedia:before{content:","}
+.zocial-windows:before{content:"W"}
+.zocial-wordpress:before{content:"w"}
+.zocial-xing:before{content:"X"}
+.zocial-yahoo:before{content:"Y"}
+.zocial-yelp:before{content:"y"}
+.zocial-youtube:before{content:"U"}
+
+[class*="btn"]{
+  padding:8px 16px;
+  text-align: center;
+  font-size:em(16);
+  @include border(3px);
+  text-transform: uppercase;
+  font-weight: 600;
+  color:#fff;
+  &.btn-style-1{
+    background-color:$gold;
+  }
+  @include transition(.2s);
+  &:hover{
+    -webkit-transform: scale(1.1);  
+    -ms-transform: scale(1.1);  
+    transform: scale(1.1); 
+  }
+}
+
+// 1. HEADER
+
+header{
+  background-color:#fff;
+  &.sticky{
+    position:fixed;
+    top:-100%;
+    left:0;
+    width:100%;
+    z-index: 100;
+    -webkit-transition:all ease-in-out 1000ms;
+    -moz-transition:all ease-in-out 1000ms;
+    -o-transition:all ease-in-out 1000ms;
+    transition:all ease-in-out 1000ms;
+    &.stuck{
+      top:0;
+    }
+  }
+  overflow: hidden;
+  background-color:#fff;
+  .navbarmobile{
+    background-color:$gold;
+    max-height: 0px;
+    @include height(300ms);
+    a{ color:#fff; }
+    &.toggle{
+      max-height: 900px;
+    }
+    overflow: hidden;
+    a{
+      display: block;
+      padding:12px;
+      &:not(:last-child){
+        border-bottom:1px darken($gold, 15%) solid;
+      }
+    }
+  }
+  .container{
+    position:relative;
+    padding-top:20px;
+    padding-bottom: 20px;
+    nav{
+      position:relative;
+      text-align: right;
+      margin-top: -10px;
+      form{
+        position:absolute;
+        bottom:0;
+        right:0;
+        overflow: hidden;
+        width: 0;
+        &.toggle{
+          width: 100%;
+        }
+        input{
+          width: 100%;
+          border:0;
+          background-color:#fff;
+          color:$gray;
+          font-size:em(14);
+          padding:6px;
+        }
+        button{
+          position:absolute;
+          padding:0;
+          margin:0;
+          background-color:Transparent;
+          border:0;
+          color:$gold;
+          top:2px;
+          margin:4px 0;
+          right:0;
+        }
+        z-index: 5;
+      }
+      ul{
+        li{
+          position:relative;
+          display: inline-block;
+          &:not(:first-child){margin-left:15px;}
+          vertical-align: middle;    
+          &:not([class*="btn"]){color:$gold;}
+          margin-top: 10px;
+          a{
+            position:relative;
+            display: block;
+            &[title="Menu"]{
+              font-size: 19px;
+              line-height: 33px;
+            }
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: em(14);
+            &:not([title="Menu"]):not([title="Search"]):not(.btn):hover{
+              text-decoration: underline;
+            }
+          }   
+          &.glyphicon{
+            top: -2px;
+            cursor: pointer;
+            a{
+              height: 100%;
+              width:100%;
+              margin:0 auto;
+              position:absolute;
+              top:0;
+              left:0;
+              z-index: 2;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// 2. Pages
+
+// 2.1 Hero
+
+#hero{
+  text-align: left;
+  @for $i from 1 through 2 {
+    h#{$i} {
+      display: inline-block;
+      text-transform: uppercase;
+      padding:6px;
+      background-color:rgba(209, 197, 166, .3);
+    }
+  }
+}
+
+.pg-interna{
+  #hero{
+    text-align:center;
+  }
+}
+
+// 2.2 About
+
+#sobre-nos{
+  .wpb_single_image{
+    display: block;
+    .vc_single_image-wrapper,.vc_figure{display:block;}
+    .vc_single_image-img{
+      width:100%;
+    }
+  }
+}
+
+// 2.3 Serviços
+
+#servicos{
+  position:relative;
+  &::after,&::before{
+    position:absolute;
+    margin-left:-47.5%;
+    left:50%;
+    background-color:$gold;
+    padding:1px;
+    width:95%;
+    display: block;
+    content: "";
+  }
+  &::before{
+    top:-30px;
+  }
+  &::after{
+    bottom:-30px;
+  }   
+  > .wpb_column{
+    border-right:1px $gold solid;
+    &:first-child{border-left:1px $gold solid;}
+  }
+}
+
+// 2.4 Busca
+
+.search-header{margin:0 auto 60px;}
+.search-results{
+  > div{
+    display: block;
+    padding-bottom:60px;
+    margin-bottom: 60px;
+  }
+}
+
+// 3. Footer
+
+footer{
+  background-color:$lightgold;
+  padding:60px 0;
+  color:$lightgray;
+  ul{
+    text-transform:uppercase;
+    li{line-height:1.6em;}
+  }
+  a{
+    &:hover{
+      color:$gold;
+    }
+  }
+  p{
+    color:$lightgray;
+    font-size:em(14);
+    font-weight: 400;
+  }
+  .fluid-container{
+    display: none;
+    background-color:#fafafa;
+    padding:15px;
+    margin:-60px auto 30px;
+    form{
+      position:relative;
+      input{
+        border:0;
+        width:100%;
+        height:22px;
+        line-height: 22px;
+        color:$gray;
+        background-color:transparent;
+      }
+      button{
+        position:absolute;
+        top:0;
+        right:0;
+        background-color:transparent;
+        border:0;
+        margin:0;
+        padding:0;
+        font-size:22px;
+        color:$gray;
+        opacity:.5;
+      }
+    }
+  }
+}
+
+// 3. MISC
+
+@for $i from 1 through 6 {
+  h#{$i} {
+    font-weight:600;
+  }
+}
+
+p{
+  font-size: em(19);
+  line-height: 1.6em;
+  color:$gray;
+  font-weight: 100;
+}
+
+h1{font-size:em(40);}
+
+h2{font-size:em(28);}
+
+h3{font-size:em(24);}
+
+h4{font-size:em(20);}
+
+
+// 4 RESPONSIVE
+
+@media screen and (min-width:768px) {
+.no-padding-left .vc_column-inner {padding-left:0 !important;}
+}
+
+@media screen and (max-width:991px) {
+  .separator{
+    &[class*="style"]{
+      .wpb_wrapper{
+        width:70%;
+      }
+       &::after,&::before{
+        width:15%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width:767px) {
+  header .container nav ul li:not(:first-child){margin-left:15px;}
+  footer [class*="text-"],
+  footer [class*="col"]{
+    text-align: center;
+  }
+  footer [class*="col"]:nth-child(2){padding:30px 0;}
+  footer ul li{
+    display: inline-block;
+    vertical-align: middle;
+    padding:0 5px;
+  }
+  main{
+    text-align: center;
+    *{text-align:center !important;}
+  }
+  footer .fluid-container{display:block;}
+}
+
+@media screen and (max-width:320px) {
+  header .logo img{width:100%;}
+}
+
+
+// 5 FIXES
+
+// 5.1 IE FIXES
+
+@media all and (-ms-high-contrast: none) {
+  
+}

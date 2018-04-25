@@ -1,0 +1,13 @@
+{
+  "name": "",
+  "version": "1.0.0",
+  "title": "",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "ruby": "^0.6.1",
+    "sass": "^0.5.0"
+  }
+}
